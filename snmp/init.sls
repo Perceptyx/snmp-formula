@@ -9,6 +9,7 @@ snmp:
     - require:
       - pkg: {{ snmp.pkg }}
 {% if grains['os_family'] == 'FreeBSD' -%}
+snmp:
   sysrc.managed:
     - name: snmpd_enable
     - value: YES
