@@ -8,6 +8,11 @@ snmp:
     - enable: true
     - require:
       - pkg: {{ snmp.pkg }}
+{% if grains['os_family'] == 'FreeBSD' -%}
+  sysrc.managed:
+    - name: snmpd_enable
+    - value: YES
+{% endif -%}
 
 {% if grains['os_family'] == 'Debian' and grains['osmajorrelease'] < 9 %}
 include:
@@ -22,4 +27,9 @@ snmp_conf_dir:
     - group: wheel
     - mode: 0750
     - makedirs: True
+
+syslogd:
+  sysrc.managed:
+    - name: syslogd_flags
+    - value: -ss
 {% endif %}
