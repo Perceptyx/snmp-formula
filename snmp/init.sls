@@ -27,9 +27,4 @@ snmp_conf_dir:
     - group: wheel
     - mode: 0750
     - makedirs: True
-
-syslogd:
-  sysrc.managed:
-    - name: syslogd_flags
-    - value: -ss
 {% endif %}
