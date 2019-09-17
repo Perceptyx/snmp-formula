@@ -20,15 +20,3 @@ enable_snmp:
 include:
   - snmp.default
 {% endif %}
-
-{% if grains['os_family'] == 'FreeBSD' %}
-snmp_conf_dir:
-  file.directory:
-    - name: '{{ snmp.confdir }}'
-    - user: root
-    - group: wheel
-    - mode: 0750
-    - makedirs: True
-    - require:
-      - pkg: {{ snmp.pkg }}
-{% endif %}

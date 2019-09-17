@@ -4,6 +4,18 @@
 include:
   - snmp
 
+{% if grains['os_family'] == 'FreeBSD' %}
+snmp_conf_dir:
+  file.directory:
+    - name: '{{ snmp.confdir }}'
+    - user: root
+    - group: wheel
+    - mode: 0750
+    - makedirs: True
+    - require:
+      - pkg: {{ snmp.pkg }}
+{% endif %}
+
 snmp_conf:
   file.managed:
     - name: {{ snmp.config }}
