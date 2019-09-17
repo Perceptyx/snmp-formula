@@ -26,5 +26,7 @@ snmp_conf:
     - user: root
     - group: {{ snmp.rootgroup }}
     - mode: 644
+    - require:
+      - file: snmp_conf_dir
     - watch_in:
       - service: {{ snmp.service }}
