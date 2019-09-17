@@ -29,4 +29,6 @@ snmp_conf_dir:
     - group: wheel
     - mode: 0750
     - makedirs: True
+    - require:
+      - pkg: {{ snmp.pkg }}
 {% endif %}
